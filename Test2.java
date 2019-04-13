@@ -1,10 +1,10 @@
 package noip;
 import java.util.Arrays;
 /**
- * 2018ÄêNOIPÌá¸ß×é¸´ÈüµÚÒ»ÌìµÚ¶şÌâ
- * ¶ÀÁ¢×ö³ö
- * ÔËÓÃ¶¯Ì¬¹æ»®
- * ºÄÊ±£º1.91Ğ¡Ê±
+ * 2018å¹´NOIPæé«˜ç»„å¤èµ›ç¬¬ä¸€å¤©ç¬¬äºŒé¢˜
+ * ç‹¬ç«‹åšå‡º
+ * è¿ç”¨åŠ¨æ€è§„åˆ’
+ * è€—æ—¶ï¼š1.91å°æ—¶
  * */
 public class Test2 {
 	public static void main(String[] args) {
@@ -12,22 +12,23 @@ public class Test2 {
 		for(int i = 0;i < moneys.length;i++) {
 			moneys[i] = (int) (25000*Math.random() + 1);
 		}
+		Arrays.sort(moneys);//è¿™ä¸ªç®—æ³•çš„å‰ææ˜¯é¢å€¼å·²æ’åº
 		int length = shortest(moneys);
 		System.out.println(length);
 	}
 	/**
-	 * Ö÷Ëã·¨
+	 * ä¸»ç®—æ³•
 	 * */
 	static int shortest(int[] moneys) {
 		for(int i = moneys.length - 1;i >= 0;i--) {
-			if(isComable(moneys, moneys[i])) {//Èç¹ûÄ³ÖÖÃæÖµÄÜ±»ÆäËûµÄ»õ±Ò´Õ³öÀ´£¬ÔòÒÆÈ¥
+			if(isComable(moneys, moneys[i])) {//å¦‚æœæŸç§é¢å€¼èƒ½è¢«å…¶ä»–çš„è´§å¸å‡‘å‡ºæ¥ï¼Œåˆ™ç§»å»
 				moneys = remove(moneys,i);
 			}
 		}
 		return moneys.length;
 	}
 	/**
-	 * ÒÆÈ¥Ä³ÖÖ»õ±ÒÃæÖµµÄ·½·¨
+	 * ç§»å»æŸç§è´§å¸é¢å€¼çš„æ–¹æ³•
 	 * */
 	static int[] remove(int[] arr,int index) {
 		int temp = arr[index];
@@ -39,27 +40,27 @@ public class Test2 {
 		return arr;
 	}
 	/**
-	 * ¹Ø¼üËã·¨
-	 * ÅĞ¶ÏÄ³ÖÖ»õ±ÒÃæÖµÊÇ·ñÄÜ±»´Õ³ö
+	 * å…³é”®ç®—æ³•
+	 * åˆ¤æ–­æŸç§è´§å¸é¢å€¼æ˜¯å¦èƒ½è¢«å‡‘å‡º
 	 * */
 	static boolean isComable(int[] arr,int money) {
 		boolean b = false;
 		int index = -1;
-		for(int i = arr.length - 1;i >= 0;i--) {//Ñ°ÕÒ±ÈÒªÈ·¶¨µÄÃæÖµĞ¡µÄÃæÖµµÄĞòºÅ
+		for(int i = arr.length - 1;i >= 0;i--) {//å¯»æ‰¾æ¯”è¦ç¡®å®šçš„é¢å€¼å°çš„é¢å€¼çš„åºå·
 			if(arr[i] < money) {
 				index = i;
 				break;
 			}
 		}
-		if(index == -1) {//Èç¹û¶¼±ÈÈ·¶¨µÄÃæÖµ´ó£¬Ôò¿Ï¶¨´Õ²»³öÀ´
+		if(index == -1) {//å¦‚æœéƒ½æ¯”ç¡®å®šçš„é¢å€¼å¤§ï¼Œåˆ™è‚¯å®šå‡‘ä¸å‡ºæ¥
 			b = false;
 		}else{
 			for(int i = index;i >= 0;i--) {
-				if(money % arr[i] == 0) {//ÈôÄÜ±»Ç°Ò»¸öÕû³ı£¬ÔòÄÜ´Õ³öÀ´
+				if(money % arr[i] == 0) {//è‹¥èƒ½è¢«å‰ä¸€ä¸ªæ•´é™¤ï¼Œåˆ™èƒ½å‡‘å‡ºæ¥
 					b = true;
 					break;
 				}else {
-					b = b ||  isComable(arr, money - arr[i]);//Èô²»ÄÜ£¬ÔòÓÃ¶¯Ì¬¹æ»®£¬Ê¹ÒªÈ·¶¨µÄÃæÖµ¼õÈ¥Ç°Ò»¸öÃæÖµÔÙµİ¹é
+					b = b ||  isComable(arr, money - arr[i]);//è‹¥ä¸èƒ½ï¼Œåˆ™ç”¨åŠ¨æ€è§„åˆ’ï¼Œä½¿è¦ç¡®å®šçš„é¢å€¼å‡å»å‰ä¸€ä¸ªé¢å€¼å†é€’å½’
 				}
 			}
 		}
